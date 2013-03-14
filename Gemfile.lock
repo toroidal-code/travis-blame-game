@@ -23,8 +23,11 @@ GEM
       net-http-pipeline
     haml (4.0.0)
       tilt
+    hashie (1.2.0)
     highline (1.6.15)
     jsmin (1.0.1)
+    launchy (2.2.0)
+      addressable (~> 2.3)
     launchy (2.2.0-java)
       addressable (~> 2.3)
       spoon (~> 0.0.1)
@@ -34,11 +37,24 @@ GEM
     net-http-persistent (2.8)
     net-http-pipeline (1.0.1)
     netrc (0.7.7)
+    octokit (1.23.0)
+      addressable (~> 2.2)
+      faraday (~> 0.8)
+      faraday_middleware (~> 0.9)
+      hashie (~> 1.2)
+      multi_json (~> 1.3)
+      netrc (~> 0.7.7)
+    pry (0.9.12)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     pry (0.9.12-java)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
       spoon (~> 0.0)
+    puma (1.6.3)
+      rack (~> 1.2)
     puma (1.6.3-java)
       rack (~> 1.2)
     rack (1.5.2)
@@ -76,11 +92,13 @@ GEM
 
 PLATFORMS
   java
+  ruby
 
 DEPENDENCIES
   bundler (~> 1.2)
   compass
   haml
+  octokit
   puma
   rack-cache
   sass

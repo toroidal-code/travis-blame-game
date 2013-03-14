@@ -1,9 +1,13 @@
 #Encodng.default_external = 'utf-8'
 
+require "sinatra"
 require "rubygems"
 require "bundler/setup"
+require 'sinatra/support'
+require 'sinatra/assetpack'
+require './helper'
 
-configure { set :server, :puma }
+#configure { set :server, :puma }
 
 #Using gzip compression in Sinatra with Ruby
 #z = Zlib::Deflate.new(6, 31)
@@ -16,7 +20,9 @@ class App < Sinatra::Base
   register Sinatra::CompassSupport
   set :root, File.dirname(__FILE__)
   register Sinatra::AssetPack
-  
+  @repo = "codeflash/codeflash"
+  helper = Helper.new(@repo)
+
   assets do
     serve '/js',  from: 'app/js'
     serve '/css', from: 'app/css'
@@ -44,8 +50,14 @@ class App < Sinatra::Base
   configure do
     #set :public_folder, Proc.new { File.join(root, "public")}
   end
-  
+
   get '/' do
-    erb :index
-  end  
+      erb :index, locals: {branches: helper.branches}
+  end 
+  
+  helper.repeat_every 45 do
+      helper.rapdev.reload
+      helper.branches_reload
+  end
+
 end

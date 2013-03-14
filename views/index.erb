@@ -1,13 +1,22 @@
 
-      <!-- Masthead
-      ================================================== -->
-      <header class="jumbotron subhead" id="overview"  style="top:50%;">
-        <div class="row">
-          <div class="span6 offset3">
-          </div>
-        </div>
-      </header>
-
-    </div> <!-- /container -->
-    <div class="container" id="main">
+<!-- Masthead
+     ================================================== -->
+<header class="jumbotron subhead" id="overview"  style="top:50%;">
+  <div class="row">
+    <div class="span6 offset3">
+	  <table border="1">
+ 		<% branches.each do |key, value| %>
+		<tr>		
+		  <td><%= key %></td>
+		  <td><%= value[:state] %></td>
+		  <td><%= value[:committer] %></td>
+		</tr>			
+	  	<% end %>		
+	  </table>
     </div>
+  </div>
+</header>
+
+</div> <!-- /container -->
+<div class="container" id="main">
+</div>
