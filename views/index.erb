@@ -1,22 +1,16 @@
 
 <!-- Masthead
-     ================================================== -->
-<header class="jumbotron subhead" id="overview"  style="top:50%;">
-  <div class="row">
-    <div class="span6 offset3">
-	  <table border="1">
- 		<% branches.each do |key, value| %>
-		<tr>		
-		  <td><%= key %></td>
-		  <td><%= value[:state] %></td>
-		  <td><%= value[:committer] %></td>
-		</tr>			
-	  	<% end %>		
-	  </table>
-    </div>
+     ==================================================  -->
+<div class="container-fluid">
+  <div class="row-fluid">
+ 		<% branches.each do |branch, build| %>
+            <div class="span4 well center">
+                  <h2><%= branch %></h2>
+                <div class="center status <%= build.color %>"></div>
+                State: <%= build.state %>
+                <br>
+                Author: <%= build.commit.committer_name %>
+            </div>
+	  	<% end %>
   </div>
-</header>
-
-</div> <!-- /container -->
-<div class="container" id="main">
 </div>

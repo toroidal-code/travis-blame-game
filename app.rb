@@ -20,8 +20,8 @@ class App < Sinatra::Base
   register Sinatra::CompassSupport
   set :root, File.dirname(__FILE__)
   register Sinatra::AssetPack
-  @repo = "codeflash/codeflash"
-  helper = Helper.new(@repo)
+  @repo = "rit-sse/rapdev13"
+  helper = Helper.new(@repo,5)
 
   assets do
     serve '/js',  from: 'app/js'
@@ -37,9 +37,9 @@ class App < Sinatra::Base
 			   ]
     
     css :application, '/css/application.css', [
+                 '/css/add.css',
 					       '/css/bootstrap.css',
-					       '/css/bootstrap-responsive.min.css',
-					       '/css/add.css'
+					       '/css/bootstrap-responsive.min.css'
 					      ]
     
     js_compression	:jsmin
@@ -53,11 +53,11 @@ class App < Sinatra::Base
 
   get '/' do
       erb :index, locals: {branches: helper.branches}
-  end 
-  
-  helper.repeat_every 45 do
-      helper.rapdev.reload
-      helper.branches_reload
+  end
+
+  Helper::repeat_every 5 do
+    helper.rapdev.reload
+    helper.branches_reload
   end
 
 end
